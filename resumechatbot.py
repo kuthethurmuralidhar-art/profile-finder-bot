@@ -4,7 +4,7 @@ import pandas as pd
 # ----------------------------------------------------
 # 1. DYNAMIC DATABASE SETUP (Reading from GitHub)
 # ----------------------------------------------------
-@st.cache_data(ttl=600)  # Caches the data for 10 minutes so it stays fast
+#@st.cache_data(ttl=600)  # Caches the data for 10 minutes so it stays fast
 #def load_profiles_from_github():
     # Replace 'YOUR_GITHUB_USERNAME' with kuthethurmuralidhar-art
     # Replace 'profile-finder-bot' if your repo name is different
@@ -12,7 +12,7 @@ import pandas as pd
 #   repo_name = "profile-finder-bot"
     
 #   url = f"https://githubusercontent.com{username}/{repo_name}/main/profiles.csv"
-    @st.cache_data(ttl=600)  # Caches the data for 10 minutes so it stays fast
+@st.cache_data(ttl=600)  # Caches the data for 10 minutes so it stays fast
 def load_profiles_from_github():
     try:
         # Read the file directly from the local directory instead of a web URL link
