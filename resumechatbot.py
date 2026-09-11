@@ -86,7 +86,6 @@ if user_input := st.chat_input("Enter skill (e.g., Oracle DBA)..."):
             response_text += f"<span style='font-size:14px; display:block; margin-bottom:15px;'>🛠️ **Matched Skills:** *{row['Skills']}*</span>"
             response_text += "<hr style='margin: 10px 0; border: 0; border-top: 1px solid #eee;'>\n"
     else:
-    else:
         response_text = f"No live profile matches found for **'{user_input}'**.\n\nTry searching for alternative skills listed in your repository."
 
     with st.chat_message("assistant"):
