@@ -28,7 +28,7 @@ st.write("This bot matches candidate profiles and lets you download resumes dire
 # ----------------------------------------------------
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "Good morning! Enter a skill (e.g., DBA or OCI) to search candidate profiles."}
+        {"role": "assistant", "content": "Good morning! Enter a skill (e.g., DBA/OCI/AWS/Oracle/Python) to search candidate profiles."}
     ]
 
 # Display history loops
