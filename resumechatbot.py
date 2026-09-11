@@ -65,7 +65,8 @@ if "messages" not in st.session_state:
 # Display history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+        # This force-renders HTML parameters consistently for all past historical messages
+        st.markdown(message["content"], unsafe_allow_html=True)
 
 # React to User Query
 if user_input := st.chat_input("Enter skill (e.g., Oracle DBA)..."):
