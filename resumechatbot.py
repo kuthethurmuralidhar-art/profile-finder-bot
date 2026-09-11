@@ -101,7 +101,7 @@ if user_input := st.chat_input("Enter skill (e.g., Oracle DBA)..."):
                 clean_name = original_name.replace(" ", "_")
             
             # Match the exact file name you specified: K._Muralidhar.pdf (without _Profile word)
-            profile_url = f"https://githubusercontent.com{clean_name}.pdf"
+            profile_url = f"https://raw.githubusercontent.com{clean_name}.pdf"
             
             response_text += f"<span style='font-size:14px; display:block; margin-bottom:5px;'>👤 **Name:** {original_name}</span>"
             response_text += f"<span style='font-size:14px; display:block; margin-bottom:5px;'>📧 **Email:** <a href='mailto:{row['Email']}'>{row['Email']}</a></span>"
