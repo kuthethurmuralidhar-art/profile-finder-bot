@@ -82,32 +82,31 @@ if user_input := st.chat_input("Enter skill (e.g., Oracle DBA)..."):
     if not matched_profiles.empty:
         response_text = f"### Found **{len(matched_profiles)}** live cloud match(es) for **'{user_input}'**:\n\n"
         
-        for idx, row in matched_profiles.iterrows():
-            # Force read name as exact text from your dataframe row
+                for idx, row in matched_profiles.iterrows():
             original_name = str(row['Name']).strip()
             
-            # Re-verify and explicitly build the capitalization casing manually for safety
+            # DIRECT ABSOLUTE LINKS: Hardcoded absolute URLs to completely avoid missing slash bugs
             if "muralidhar" in original_name.lower():
-                clean_name = "K._Muralidhar"
+                profile_url = "https://githubusercontent.com"
             elif "sharma" in original_name.lower():
-                clean_name = "Amit_Sharma"
+                profile_url = "https://githubusercontent.com"
             elif "reddy" in original_name.lower():
-                clean_name = "Sneha_Reddy"
+                profile_url = "https://githubusercontent.com"
             elif "doe" in original_name.lower():
-                clean_name = "John_Doe"
+                profile_url = "https://githubusercontent.com"
             elif "patel" in original_name.lower():
-                clean_name = "Priya_Patel"
+                profile_url = "https://githubusercontent.com"
             else:
+                # Default safety fallback link
                 clean_name = original_name.replace(" ", "_")
-            
-            # Match the exact file name you specified: K._Muralidhar.pdf (without _Profile word)
-            profile_url = f"https://raw.githubusercontent.com{clean_name}.pdf"
+                profile_url = f"https://githubusercontent.com{clean_name}.pdf"
             
             response_text += f"<span style='font-size:14px; display:block; margin-bottom:5px;'>👤 **Name:** {original_name}</span>"
             response_text += f"<span style='font-size:14px; display:block; margin-bottom:5px;'>📧 **Email:** <a href='mailto:{row['Email']}'>{row['Email']}</a></span>"
             response_text += f"<span style='font-size:14px; display:block; margin-bottom:5px;'>🛠️ **Matched Skills:** *{row['Skills']}*</span>"
             response_text += f"<span style='font-size:14px; display:block; margin-bottom:15px;'>📄 **Profile Document:** <a href='{profile_url}' target='_blank' style='text-decoration:none; color:#1f77b4; font-weight:bold;'>📥 Download Profile File</a></span>"
             response_text += "<hr style='margin: 10px 0; border: 0; border-top: 1px solid #eee;'>\n"
+
 
     else:
         response_text = f"No live profile matches found for **'{user_input}'**.\n\nTry searching for alternative skills listed in your repository."
