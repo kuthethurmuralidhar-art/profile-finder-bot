@@ -1,6 +1,6 @@
-Name,Email,Skills
-K. Muralidhar,muralidhar.oracle@example.com,"Oracle DBA, OCI, Oracle Designer, Python Basics, Streamlit"
-Amit Sharma,amit.oci@example.com,"Oracle Cloud Infrastructure (OCI), AWS, Cloud Security, Linux"
-Sneha Reddy,sneha.designer@example.com,"Oracle Designer, Database Modelling, PL/SQL, Oracle Forms"
-John Doe,john.python@example.com,"Python Basics, Django, Flask, PostgreSQL, Git"
-Priya Patel,priya.dba@example.com,"Oracle DBA, Performance Tuning, Backup & Recovery, SQL"
+Name,Email,Skills,Filename
+K. Muralidhar,muralidhar.oracle@example.com,"Oracle DBA, OCI, Oracle Designer, Python Basics, Streamlit",K._Muralidhar.pdf
+Amit Sharma,amit.oci@example.com,"Oracle Cloud Infrastructure (OCI), AWS, Cloud Security, Linux",Amit_Sharma.pdf
+Sneha Reddy,sneha.designer@example.com,"Oracle Designer, Database Modelling, PL/SQL, Oracle Forms",Sneha_Reddy.pdf
+John Doe,john.python@example.com,"Python Basics, Django, Flask, PostgreSQL, Git",John_Doe.pdf
+Priya Patel,priya.dba@example.com,"Oracle DBA, Performance Tuning, Backup & Recovery, SQL",Priya_Patel.pdf
