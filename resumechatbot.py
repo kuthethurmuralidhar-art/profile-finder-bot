@@ -81,10 +81,11 @@ if user_input := st.chat_input("Enter skill (e.g., Oracle DBA)..."):
     if not matched_profiles.empty:
         response_text = f"### Found **{len(matched_profiles)}** live cloud match(es) for **'{user_input}'**:\n\n"
         for idx, row in matched_profiles.iterrows():
-            response_text += f"👤 **Name:** {row['Name']}\n"
-            response_text += f"📧 **Email:** [{row['Email']}](mailto:{row['Email']})\n"
-            response_text += f"🛠️ **Matched Skills:** *{row['Skills']}*\n"
-            response_text += "---\n"
+            response_text += f"<span style='font-size:14px; display:block; margin-bottom:5px;'>👤 **Name:** {row['Name']}</span>"
+            response_text += f"<span style='font-size:14px; display:block; margin-bottom:5px;'>📧 **Email:** <a href='mailto:{row['Email']}'>{row['Email']}</a></span>"
+            response_text += f"<span style='font-size:14px; display:block; margin-bottom:15px;'>🛠️ **Matched Skills:** *{row['Skills']}*</span>"
+            response_text += "<hr style='margin: 10px 0; border: 0; border-top: 1px solid #eee;'>\n"
+    else:
     else:
         response_text = f"No live profile matches found for **'{user_input}'**.\n\nTry searching for alternative skills listed in your repository."
 
