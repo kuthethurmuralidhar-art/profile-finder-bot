@@ -48,8 +48,8 @@ profiles_df = load_profiles_from_github()
 # 2. UI CONFIGURATION
 # ----------------------------------------------------
 st.set_page_config(page_title="Live Profile Finder Bot", page_icon="🔍")
-st.title("🔍 Live Profile Recruiter Matcher")
-st.write("This bot scans our live GitHub database (`profiles.csv`) to match candidate skills.")
+st.title("🔍 Profile  Matcher")
+#st.write("This bot scans our live GitHub database (`profiles.csv`) to match candidate skills.")
 
 # ----------------------------------------------------
 # 3. CHATBOT INTERFACE LOGIC
