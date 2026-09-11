@@ -5,14 +5,29 @@ import pandas as pd
 # 1. DYNAMIC DATABASE SETUP (Reading from GitHub)
 # ----------------------------------------------------
 @st.cache_data(ttl=600)  # Caches the data for 10 minutes so it stays fast
-def load_profiles_from_github():
+#def load_profiles_from_github():
     # Replace 'YOUR_GITHUB_USERNAME' with kuthethurmuralidhar-art
     # Replace 'profile-finder-bot' if your repo name is different
-    username = "kuthethurmuralidhar-art"
-    repo_name = "profile-finder-bot"
+#   username = "kuthethurmuralidhar-art"
+#   repo_name = "profile-finder-bot"
     
-    url = f"https://githubusercontent.com{username}/{repo_name}/main/profiles.csv"
-    
+#   url = f"https://githubusercontent.com{username}/{repo_name}/main/profiles.csv"
+    @st.cache_data(ttl=600)  # Caches the data for 10 minutes so it stays fast
+def load_profiles_from_github():
+    try:
+        # Read the file directly from the local directory instead of a web URL link
+        df = pd.read_csv("profiles.csv")
+        return df
+    except Exception as e:
+        # Fallback tracking display
+        st.error(f"Could not read local data asset. Error: {e}")
+        fallback_data = {
+            "Name": ["System Error Tracker"],
+            "Email": ["admin@example.com"],
+            "Skills": ["Error"]
+        }
+        return pd.DataFrame(fallback_data)
+
     try:
         # Streamlit reads the CSV file directly from your GitHub cloud link
         df = pd.read_csv(url)
