@@ -79,7 +79,7 @@ if user_input := st.chat_input("Enter skill (e.g., Oracle DBA)..."):
     matched_profiles = profiles_df[profiles_df["Skills"].str.lower().str.contains(search_skill, na=False)]
     
     if not matched_profiles.empty:
-        response_text = f"### Found **{len(matched_profiles)}** live cloud match(es) for **'{user_input}'**:\n\n"
+        response_text = f"### Found **{len(matched_profiles)}**  match(es) for **'{user_input}'**:\n\n"
         for idx, row in matched_profiles.iterrows():
             response_text += f"<span style='font-size:14px; display:block; margin-bottom:5px;'>👤 **Name:** {row['Name']}</span>"
             response_text += f"<span style='font-size:14px; display:block; margin-bottom:5px;'>📧 **Email:** <a href='mailto:{row['Email']}'>{row['Email']}</a></span>"
