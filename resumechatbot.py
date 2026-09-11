@@ -82,20 +82,19 @@ if user_input := st.chat_input("Enter skill (e.g., Oracle DBA)..."):
     if not matched_profiles.empty:
         response_text = f"### Found **{len(matched_profiles)}**  match(es) for **'{user_input}'**:\n\n"
         for idx, row in matched_profiles.iterrows():
-            # Clean filename by replacing spaces with underscores to create a reliable URL
-            clean_name = str(row['Name']).replace(" ", "_")
+            # 1. We read the Name straight from the CSV row data to preserve capitalisation (K. Muralidhar)
+            original_name = str(row['Name']).strip()
             
-            # This constructs a direct link to a file hosted in your GitHub repository
-            # Adjust the file extension (.pdf, .docx) based on your actual files
+            # 2. Swap the spaces out for underscores (K._Muralidhar)
+            clean_name = original_name.replace(" ", "_")
+            
+            # 3. FIXED URL: Builds the link using the exact name with correct uppercase letters
             profile_url = f"https://githubusercontent.com{clean_name}_Profile.pdf"
             
-            response_text += f"<span style='font-size:14px; display:block; margin-bottom:5px;'>👤 **Name:** {row['Name']}</span>"
+            response_text += f"<span style='font-size:14px; display:block; margin-bottom:5px;'>👤 **Name:** {original_name}</span>"
             response_text += f"<span style='font-size:14px; display:block; margin-bottom:5px;'>📧 **Email:** <a href='mailto:{row['Email']}'>{row['Email']}</a></span>"
             response_text += f"<span style='font-size:14px; display:block; margin-bottom:5px;'>🛠️ **Matched Skills:** *{row['Skills']}*</span>"
-            
-            # This line adds a styled download text link with a document icon right next to the profile fields
             response_text += f"<span style='font-size:14px; display:block; margin-bottom:15px;'>📄 **Profile Document:** <a href='{profile_url}' target='_blank' style='text-decoration:none; color:#1f77b4; font-weight:bold;'>📥 Download Profile File</a></span>"
-            
             response_text += "<hr style='margin: 10px 0; border: 0; border-top: 1px solid #eee;'>\n"
     else:
         response_text = f"No live profile matches found for **'{user_input}'**.\n\nTry searching for alternative skills listed in your repository."
