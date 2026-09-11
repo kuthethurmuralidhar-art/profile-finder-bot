@@ -88,7 +88,7 @@ if user_input := st.chat_input("Enter skill (e.g., Oracle DBA)..."):
     else:
         response_text = f"No live profile matches found for **'{user_input}'**.\n\nTry searching for alternative skills listed in your repository."
 
-     with st.chat_message("assistant"):
+    with st.chat_message("assistant"):
         # Add ', unsafe_allow_html=True' inside st.markdown()
         st.markdown(response_text, unsafe_allow_html=True)
     st.session_state.messages.append({"role": "assistant", "content": response_text})
