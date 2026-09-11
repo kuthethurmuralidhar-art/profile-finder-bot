@@ -82,7 +82,7 @@ if user_input := st.chat_input("Enter skill (e.g., Oracle DBA)..."):
     if not matched_profiles.empty:
         response_text = f"### Found **{len(matched_profiles)}** live cloud match(es) for **'{user_input}'**:\n\n"
         
-                for idx, row in matched_profiles.iterrows():
+        for idx, row in matched_profiles.iterrows():
             original_name = str(row['Name']).strip()
             
             # DIRECT ABSOLUTE LINKS: Hardcoded absolute URLs to completely avoid missing slash bugs
