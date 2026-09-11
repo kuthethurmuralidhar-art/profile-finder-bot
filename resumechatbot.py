@@ -81,7 +81,7 @@ if user_input := st.chat_input("Enter skill (e.g., Oracle DBA)..."):
     
     if not matched_profiles.empty:
         response_text = f"### Found **{len(matched_profiles)}**  match(es) for **'{user_input}'**:\n\n"
-         for idx, row in matched_profiles.iterrows():
+        for idx, row in matched_profiles.iterrows():
             # Clean filename by replacing spaces with underscores to create a reliable URL
             clean_name = str(row['Name']).replace(" ", "_")
             
