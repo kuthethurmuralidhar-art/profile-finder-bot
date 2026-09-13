@@ -6,22 +6,20 @@ import os
 # ----------------------------------------------------
 # 1. ORACLE CLOUD ENGINE CONFIGURATION (THIN MODE)
 # ----------------------------------------------------
-# Point python to your unzipped wallet folder sitting in your directory path
-WALLET_DIR = r"D:\Personal\AIrelatedDocs\Oracle AI\Project\wallet_files"
+# On Streamlit Cloud, the wallet folder will sit right next to the script
+WALLET_DIR = os.path.join(os.getcwd(), "wallet_files")
 
 def get_db_connection():
     connection_params = {
         "user": "ADMIN",
-        "password": "ProOracle_4U",  # 🔑 Replace with your real cloud database password
+        "password": st.secrets["db_password"],      # 🔒 Secured via Streamlit Vault
         "dsn": "search_low",                       
-        "config_dir": WALLET_DIR,                  # Points Thin mode to tnsnames.ora
-        "wallet_location": WALLET_DIR,             # Points Thin mode to cwallet.sso
-        "wallet_password": "Oracle_4U", # 🔒 Your real wallet download password
-        "ssl_server_dn_match": False               # Bypasses local hostname string mismatches safely
+        "config_dir": WALLET_DIR,                  
+        "wallet_location": WALLET_DIR,             
+        "wallet_password": st.secrets["wallet_password"],  # 🔒 Secured via Streamlit Vault
+        "ssl_server_dn_match": False               
     }
     
-    # Define our output type handler to force Oracle to convert BLOB data directly
-    # into native Python bytes BEFORE Pandas processes the dataframe.
     def blob_to_bytes_handler(cursor, name, default_type, size, precision, scale):
         if default_type == oracledb.DB_TYPE_BLOB:
             return cursor.var(bytes, arraysize=cursor.arraysize)
@@ -41,7 +39,6 @@ def get_unique_skills_from_oracle():
         if df.empty:
             return ["Oracle DBA", "OCI", "Oracle Designer", "Python Basics", "Streamlit"]
             
-        # Oracle columns return as UPPERCASE strings natively in Pandas
         target_column = 'SKILLS_MATRIX' if 'SKILLS_MATRIX' in df.columns else 'skills_matrix'
         
         skills_series = df[target_column].astype(str).dropna()
@@ -55,7 +52,6 @@ def get_unique_skills_from_oracle():
         
         return sorted(unique_series.tolist())
     except Exception as e:
-        st.sidebar.warning(f"⚠️ Dynamic Skill Fetching Offline: Using baseline array metadata. (Log: {e})")
         return ["Oracle DBA", "OCI", "Oracle Designer", "Python Basics", "Streamlit", "AWS", "Cloud Security", "Linux", "PL/SQL", "Git"]
 
 def query_profiles_from_oracle(search_keywords=None):
